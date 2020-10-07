@@ -34,59 +34,55 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblEstatura = new javax.swing.JLabel();
-        txtEstatura = new javax.swing.JTextField();
-        btnConvertir = new javax.swing.JButton();
+        btnPulgadas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Convertidor de estatura");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        lblEstatura.setBackground(new java.awt.Color(102, 102, 255));
-        lblEstatura.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lblEstatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEstatura.setText("Estatura en cm:");
-        lblEstatura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        btnConvertir.setBackground(new java.awt.Color(153, 153, 153));
-        btnConvertir.setText("Convertir");
-        btnConvertir.addActionListener(new java.awt.event.ActionListener() {
+        btnPulgadas.setBackground(new java.awt.Color(153, 153, 153));
+        btnPulgadas.setText("Pulgadas");
+        btnPulgadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConvertirActionPerformed(evt);
+                btnPulgadasActionPerformed(evt);
             }
         });
 
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Lo que hace este proyecto es convertir la estatura que ingresen en la caja de texto y al darle click en el boton lo convierte en pulgadas");
 
+        jButton1.setText("Pies");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(lblEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConvertir)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(btnPulgadas, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConvertir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(btnPulgadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -105,46 +101,22 @@ public class Ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
-        if(validaEstatura(txtEstatura)){txtEstatura.requestFocus(); lblEstatura.setForeground(Color.red);txtEstatura.setText(""); return;}
-        double e = Double.parseDouble(txtEstatura.getText());
-        e= e/2.54;
-        JOptionPane.showMessageDialog(this, "Su estatura en pulgadas es: "+e);
-    }//GEN-LAST:event_btnConvertirActionPerformed
-    //------Exception
-    public void cadenaVacia(String cad)throws VentanaException{
-        if(cad.length()==0)throw new VentanaException("Campos Vacios");
-    }
-    private void validaNum(String d) throws VentanaException{
-        if(!d.matches("[0-9]*")) throw new VentanaException("Solo Numeros");
+    private void btnPulgadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPulgadasActionPerformed
+        Pulgadas dialogo= new Pulgadas(this,true);
         
-    }
-    private void validaNu(String d) throws VentanaException{
-        if(!d.matches("[1-9]*")) throw new VentanaException("No validos \n *0 \n *letras \n *caracter especial \n *Negativos");
-    }
-    private void validaNeg(String num)throws VentanaException{
-        if(Integer.parseInt(num)<0)throw new VentanaException("Solo positivos");
-    }
-    public boolean validaEstatura(JTextField t){
-        try {
-            cadenaVacia(t.getText());
-        }catch(VentanaException e){
-           showMessageDialog(this,e.getMessage()); t.requestFocus();return true;
-        }try {
-            validaNeg(t.getText());
-        }catch(VentanaException e){
-           showMessageDialog(this,e.getMessage()); t.requestFocus();return true;
-        }try {
-            validaNum(t.getText());
-        }catch(VentanaException e){
-           showMessageDialog(this,e.getMessage()); t.requestFocus();return true;
-        }try {
-            validaNu(t.getText());
-        }catch(VentanaException e){
-           showMessageDialog(this,e.getMessage()); t.requestFocus();return true;
-        }
-        return false;
-    }
+        dialogo.puntero = this;
+        
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_btnPulgadasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Pies dialogo= new Pies(this,true);
+        
+        dialogo.puntero = this;
+        
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -181,10 +153,9 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConvertir;
+    private javax.swing.JButton btnPulgadas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblEstatura;
-    private javax.swing.JTextField txtEstatura;
     // End of variables declaration//GEN-END:variables
 }
